@@ -128,87 +128,89 @@ def round_robin(processes, quantum):
             time += 1
     return schedule
 
-def printLatex(algo, schedule, spaces, original_processes):
+def renderSchedule(algo, schedule, original_processes):
     proc_dict, avg_wait, avg_turn = calculate_metrics(schedule, original_processes)
-    
+
     # Metriche
     names = [data['name'] for data in proc_dict.values()]
     arrivals = [str(data['arrival']) for data in proc_dict.values()]
     bursts = [str(data['burst']) for data in proc_dict.values()]
     waits = [str(data['waiting']) for data in proc_dict.values()]
     turns = [str(data['turnaround']) for data in proc_dict.values()]
-    
+
     totalLen = int(schedule[-1][2])
-    
-    
+
     # Tabella con diagramma
-    print("    " * spaces + "{")
-    print("    " * (spaces + 1) + "\\vspace{0.25cm}")
-    print("    " * (spaces + 1) + "\\textbf{" + algo + "}")
-    print("    " * (spaces + 1) + "\\vspace{0.15cm}")
-    print("    " * (spaces + 1))
-    print("    " * (spaces + 1) + "\\newcolumntype{T}{>{\\tiny\\scalebox{0.8}}p{0.025cm}}")
-    print("    " * (spaces + 1))
-    print("    " * (spaces + 1) + "\\begin{tabular}{|l|c|c|" + "|*{5}T" * (totalLen // 5) + "T" * (totalLen % 5) + "||c|c|}")
-    print("    " * (spaces + 2) + "\\hline")
-    print("    " * (spaces + 2) + "\\textbf{P} & \\textbf{A} & \\textbf{D}" + "&" * totalLen + "& T. Att. & T. Compl." + "\\\\")
-    print("    " * (spaces + 2) + "\\hline")
-    
+    res = []
+    res.append("{")
+    res.append("\\vspace{0.25cm}")
+    res.append("\\textbf{" + algo + "}")
+    res.append("\\vspace{0.15cm}")
+    res.append("")
+    res.append("\\newcolumntype{T}{>{\\tiny\\scalebox{0.8}}p{0.025cm}}")
+    res.append("")
+    res.append("\\begin{tabular}{|l|c|c|" + "|*{5}T" * (totalLen // 5) + "T" * (totalLen % 5) + "||c|c|}")
+    res.append("\\hline")
+    res.append("\\textbf{P} & \\textbf{A} & \\textbf{D}" + "&" * totalLen + "& T. Att. & T. Compl." + "\\\\")
+    res.append("\\hline")
+
     for i in range(len(names)):
-        print("    " * (spaces + 2) + f"{names[i]} & {arrivals[i]} & {bursts[i]}", end="")
-    
+        riga = f"{names[i]} & {arrivals[i]} & {bursts[i]}"
+
         t = 1
         a = int(arrivals[i])
-        
+
         for j in range(len(schedule)):
             s = schedule[j]
             futureSchedule = any(obj[0] == names[i] for obj in schedule[j+1:])
-            
+
             if s[0] == names[i]:
-                print("& \\cellcolor{blue!30} " * (s[2]-s[1]), end="")
+                riga += "& \\cellcolor{blue!30} " * (s[2]-s[1])
                 t += s[2] - s[1]
             else:
                 d = s[2] - s[1]
                 for k in range(d):
                     if a >= t + k:
-                        print("& ", end="")
+                        riga += "& "
                     elif futureSchedule:
-                        print("& - ", end="")
+                        riga += "& - "
                     else:
-                        print("& ", end="")
-                        
-                t += s[2] - s[1]
-        
-        print(f" & {waits[i]} & {turns[i]} \\\\")
-        
-    print("    " * (spaces + 2) + "\\hline")
-    print("    " * (spaces + 2) + "& & " + "&" * totalLen + f"& {avg_wait:.2f} & {avg_turn:.2f}" + "\\\\")
-    print("    " * (spaces + 2) + "\\hline")
-    
-    print("    " * (spaces + 1) + "\\end{tabular}")
-    print("    " * (spaces + 1) + "\\vspace{0.25cm}")
-    print("    " * spaces + "}")
-    
-    # Tabelle metriche
-    # print("    " * (spaces + 1))
-    # print("    " * spaces + "{")
-    # print("    " * (spaces + 1) + "\\begin{tabular}{|l|c|c|c|c|}")
-    # print("    " * (spaces + 2) + "\\hline")
-    # print("    " * (spaces + 2) + "\\textbf{Processo} & \\textbf{Arrivo} & \\textbf{Burst} & \\textbf{Attesa} & \\textbf{Turnaround} \\\\")
-    # print("    " * (spaces + 2) + "\\hline")
-    # for i in range(len(names)):
-    #     print("    " * (spaces + 2) + f"{names[i]} & {arrivals[i]} & {bursts[i]} & {waits[i]} & {turns[i]} \\\\")
-    # print("    " * (spaces + 2) + "\\hline")
-    # print("    " * (spaces + 2) + f"\\textbf{{Media}} & & & {avg_wait:.2f} & {avg_turn:.2f} \\\\")
-    # print("    " * (spaces + 2) + "\\hline")
-    # print("    " * (spaces + 1) + "\\end{tabular}")
-    # print("    " * spaces + "}")
+                        riga += "& "
 
-def main(params, spaces = 1):
+                t += s[2] - s[1]
+
+        res.append(riga + f" & {waits[i]} & {turns[i]} \\\\")
+
+    res.append("\\hline")
+    res.append("& & " + "&" * totalLen + f"& {avg_wait:.2f} & {avg_turn:.2f}" + "\\\\")
+    res.append("\\hline")
+
+    res.append("\\end{tabular}")
+    res.append("\\vspace{0.25cm}")
+    res.append("}")
+
+    # Tabella delle metriche (attualmente disattivata)
+    # res.append("")
+    # res.append("{")
+    # res.append("\\begin{tabular}{|l|c|c|c|c|}")
+    # res.append("\\hline")
+    # res.append("\\textbf{Processo} & \\textbf{Arrivo} & \\textbf{Burst} & \\textbf{Attesa} & \\textbf{Turnaround} \\\\")
+    # res.append("\\hline")
+    # for i in range(len(names)):
+    #     res.append(f"{names[i]} & {arrivals[i]} & {bursts[i]} & {waits[i]} & {turns[i]} \\\\")
+    # res.append("\\hline")
+    # res.append(f"\\textbf{{Media}} & & & {avg_wait:.2f} & {avg_turn:.2f} \\\\")
+    # res.append("\\hline")
+    # res.append("\\end{tabular}")
+    # res.append("}")
+
+    return "\n".join(res)
+
+
+def generateLatex(params):
     alg = params.split(";")[0]
     processes = parse_csv(params.split(";")[1])
-    schedule = []
-    
+
     if alg == "FCFS":
         schedule = fcfs(processes)
     elif alg == "SJF":
@@ -218,10 +220,14 @@ def main(params, spaces = 1):
     elif alg.startswith("RR"):
         q = int(alg[2:])
         schedule = round_robin(processes, q)
-    
-    printLatex(alg, schedule, spaces, processes)
-    
-    
+    else:
+        schedule = []
+
+    return renderSchedule(alg, schedule, processes)
+
+def main(params):
+    print(generateLatex(params))
+
 # main("""RR2;
 # P1,0,6
 # P2,1,4
@@ -229,3 +235,10 @@ def main(params, spaces = 1):
 # P4,2,5
 # P5,5,3
 # P6,5,5""", 2)
+
+import sys
+
+# ha un parametro
+if __name__ == "__main__":
+    if len(sys.argv) >= 2:
+        main(sys.argv[1])

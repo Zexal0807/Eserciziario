@@ -87,8 +87,10 @@ Dato il seguente alfabeto sorgente T e alfabeto codifica E,
     \item determinare qual è la lunghezza minima per una codifica a lunghezza fissa
     \item fornire una possibile codifica a lunghezza fissa 
     \item fornire una possibile codifica a lunghezza variabile
+    \item fornire una possibile codifica a lunghezza fissa raggruppando gli elementi in base a un criterio definito dallo studente
 \end{itemize}
 \emph{Non è necessario specificare tutte le combinazioni possibili, ma è necessario far capire come è costruita la codifica}
+\vspace{0.5cm}
 
 \begin{esercizio}[1]
     \textbf{Esercizio guidato}
@@ -110,6 +112,7 @@ Dato il seguente alfabeto sorgente T e alfabeto codifica E,
         \item GIO = GHH
         \item VEN = HGG
     \end{itemize}
+    \vspace{0.25cm}
 
     Posso proporre una possibile codifica a lunghezza varibile, in cui ogni codifica è lunghezza massima di 3 caratteri dell'alfabeto codifica:
     \begin{itemize}
@@ -119,6 +122,32 @@ Dato il seguente alfabeto sorgente T e alfabeto codifica E,
         \item GIO = HH
         \item VEN = H
     \end{itemize}
+    \vspace{0.25cm}
+
+    Posso proporre una possibile codifica a lunghezza fissa, dopo aver raggruppato gli elementi in base allo loro iniziale (M o altro). Ossia:
+
+    \hspace{2cm}
+    $T_M = \{ MAR, MER \} $
+    \hspace{2cm}
+    $T_{ALTRO} = \{ LUN, GIO, VEN \} $\\
+
+    Avendo due gruppi avrà bisogno di $\lceil log_{|E|}{(numero\ gruppi)} \rceil = \lceil log_2{(2)} \rceil = 1$ cifre per rappresentare il gruppo; quindi:
+    \begin{itemize}
+        \item gli elementi del gruppo $T_M$ termineranno con $G$
+        \item gli elementi del gruppo $T_{ALTRO}$ termineranno con $H$
+    \end{itemize}
+    \vspace{0.25cm}
+    
+    Poichè il gruppo più grande ha 3 elementi avrò bisogno di ulteriori  $\lceil log_2{(3)} \rceil \approx 1.58 \xrightarrow{} 2$ cifre per rappresentare gli elementi del gruppo:
+
+    \begin{itemize}
+        \item LUN = GGH
+        \item MAR = GGG
+        \item MER = GHG
+        \item GIO = GHH
+        \item VEN = HGH
+    \end{itemize}
+
 \end{esercizio}
 
 \newpage
@@ -148,12 +177,11 @@ Convertire i seguenti numeri dalla base 10 alla base 2:
 
 \begin{esercizio}[1]
     \textbf{Esercizio guidato}
-
-    Convertire il numero 80 dalla base 10 alla base 2
+    
+    80
 
     \immediate\write18{python3 ./../scripts/Dec2Bin.py 80 > temp/ex_dec2bin80.tex}
     \input{./temp/ex_dec2bin80.tex}
-
 \end{esercizio}
 
 \eserciziopy{convDecBin}
@@ -168,11 +196,10 @@ Convertire i seguenti numeri dalla base 2 alla base 10:
 \begin{esercizio}[1]
     \textbf{Esercizio guidato}
 
-    Convertire il numero 10101 dalla base 2 alla base 10
+    10101
 
     \immediate\write18{python3 ./../scripts/Bin2Dec.py 10101 > temp/ex_bin2dec10101.tex}
     \input{./temp/ex_bin2dec10101.tex}
-
 \end{esercizio}
 
 \eserciziopy{convBinDec}
@@ -423,11 +450,7 @@ Effettua le seguenti divisioni in binario:
 
 Effettua lo schedeuling dei seguenti processi, usando l'algoritmo FCFS, SJF e SRTF:
 
-% TODO: Implement solution
-\begin{multicols}{2}
-    \immediate\write18{python3 generate/sheduling1.py > temp/sheduling1.tex}
-    \input{./temp/sheduling1.tex}
-\end{multicols}
+\eserciziopy{sheduling1}
 
 \newpage
 
@@ -435,11 +458,7 @@ Effettua lo schedeuling dei seguenti processi, usando l'algoritmo FCFS, SJF e SR
 
 Effettua lo schedeuling dei seguenti processi, usando l'algoritmo Round Robin con t=2 e t=3
 
-% TODO: Implement solution
-\begin{multicols}{2}
-    \immediate\write18{python3 generate/sheduling2.py > temp/sheduling2.tex}
-    \input{./temp/sheduling2.tex}
-\end{multicols}
+\eserciziopy{sheduling2}
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER 10

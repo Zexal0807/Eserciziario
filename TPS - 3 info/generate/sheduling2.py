@@ -77,8 +77,7 @@ P4,2,3"""],
     [2, """P1,0,6
 P2,0,3
 P3,0,2
-P4,1,4
-P5,2,3"""],
+P4,1,4"""],
     
     # 12. Due lunghi a t=0, corti a 1 e 2 → RR preempta spesso
     [2, """P1,0,7
@@ -90,8 +89,7 @@ P4,2,3"""],
     [2, """P1,0,5
 P2,0,4
 P3,1,2
-P4,1,3
-P5,2,4"""],
+P4,1,3"""],
     
     # 14. Processo lungo a t=0, molti corti dopo
     [2, """P1,0,8
@@ -112,8 +110,7 @@ P5,3,4"""],
 P2,0,4
 P3,0,3
 P4,1,2
-P5,1,4
-P6,3,3"""],
+P5,1,4"""],
     
     # 17. Processo lungo, poi due corti quasi simultanei
     [2, """P1,0,9
@@ -137,11 +134,12 @@ P5,2,4
 P6,4,3"""],
     
     # 20. Lungo a t=0, corti ravvicinati tra 1 e 4
-    [2, """P1,0,10
+    [2, """P1,0,7
 P2,1,2
 P3,2,3
 P4,3,2
-P5,4,4"""],
+P5,4,4
+P6,2,1"""],
     
     # 21. Due lunghi a t=0, tre corti a t=1,2,3
     [2, """P1,0,8
@@ -323,19 +321,29 @@ P11,4,2
 P12,4,4"""]
 ]
 
-import sys
-from pathlib import Path
+from ProcessTable import generateLatex as generateTabella
+from ProcessSchedule import generateLatex as generateScheduling
 
-# Aggiungi la cartella "scripts" al path, partendo da questo file
-BASE_DIR = Path(__file__).resolve().parents[2]  # torna a project_root
-SCRIPT_DIR = BASE_DIR / "scripts"
-sys.path.insert(0, str(SCRIPT_DIR))
+# Algoritmi di scheduling proposti dalla sezione
+ALGORITMI = ["RR2", "RR3"]
 
-# Ora puoi importare ProcessTable
-from ProcessTable import generateLatex
+if not args.soluzioni:
+    print("""\\begin{multicols}{2}
+""")
 
 for es in esercizi_rr:
     print("""\\begin{esercizio}[""" + str(es[0]) + """]
-    """ + generateLatex(es[1]) + """
-\\end{esercizio}
+    """)
+    print(generateTabella(es[1]))
+    if args.soluzioni:
+        print("\\solution")
+        print("")
+        # for alg in ALGORITMI:
+        #     print(generateScheduling(alg + ";\n" + es[1]) + "\n")
+
+    print("""\\end{esercizio}
+""")
+
+if not args.soluzioni:
+    print("""\\end{multicols}
 """)

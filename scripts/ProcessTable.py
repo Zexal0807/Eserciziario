@@ -18,6 +18,7 @@ def generateLatex(params):
 
     res = []
     res.append("{")
+    res.append("\\vspace{-0.3cm}")
     res.append("\\begin{tabular}{|l|c|c|}")
     res.append("\\hline")
     res.append("\\textbf{Processo} & \\textbf{Arrivo} & \\textbf{Burst} \\\\")

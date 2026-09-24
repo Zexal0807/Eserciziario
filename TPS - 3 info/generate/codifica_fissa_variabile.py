@@ -56,8 +56,12 @@ es = [
 for s in es:
     print("""\\begin{esercizio}[""" + str(s[0]) + """]
     $T = \\{ """ + s[1].replace(' ', '\ ')  + """ \\} $ \\\\
-    $E = \\{ """ + s[2]+ """ \\} $
-\\end{esercizio}
-""")
+    $E = \\{ """ + s[2]+ """ \\} $""")
+
     if args.soluzioni:
-        print("SOLUZIONI")
+        print("\\solution")
+        print("Soluzione non disponibile")
+        # print(generateLatex(s[1]) + "\n")
+
+    print("""\\end{esercizio}
+""")
