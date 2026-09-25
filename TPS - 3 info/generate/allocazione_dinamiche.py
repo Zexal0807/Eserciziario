@@ -304,8 +304,23 @@ P14,110
 
 from AllocPartDinam import generateLatex
 
+def parametri_soluzione(params, alg):
+    # TODO: Implement algs
+    """Trasforma i parametri dell'esercizio nella variante con la soluzione (T -> S)."""
+    return params.replace(",T;", ",S;", 1)
+
+ALGORITMI = ["FF", "BF", "WF"]
+
 for es in esercizi_partizioni:
-    print("""\\begin{esercizio}[""" + str(es[0]) + """]
-    """ + generateLatex(es[1]) + """
-\\end{esercizio}
+    if args.soluzioni:
+        print("""\\newpage""")
+    print("""\\begin{esercizio}[""" + str(es[0]) + """]""")
+    print(generateLatex(es[1]) + "\n")
+    if args.soluzioni:
+        print("\\solution")
+        print("")
+        for alg in ALGORITMI:
+            print(generateLatex(parametri_soluzione(es[1], alg)) + "\n")
+
+    print("""\\end{esercizio}
 """)

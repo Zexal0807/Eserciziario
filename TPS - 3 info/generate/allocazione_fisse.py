@@ -19,12 +19,11 @@ esercizi_partizioni = [
     
     [1, """BF,3,T;
 200,300,400;
-P1,0
-P2,1;
-P3,150
-P4,250
+P1,0;
+P2,150
+P3,250
 P1,FREE
-P5,180
+P4,180
 """],
     
     [1, """FF,3,T;
@@ -41,8 +40,10 @@ P4,190
 P2,1
 P3,2;
 P1,150
-P4,250
 P2,FREE
+P3,FREE
+P4,250
+P5,180
 """],
     
     [1, """BF,4,T;
@@ -50,7 +51,7 @@ P2,FREE
 P1,0
 P2,2;
 P3,150
-P4,250
+P4,180
 P1,FREE
 P5,90
 """],
@@ -74,14 +75,13 @@ P5,190
     [2, """BF,4,T;
 200,300,400,500;
 P1,0
-P2,2
-P3,3;
-P4,180
-P5,250
+P2,2;
+P3,250
+P4,280
 P1,FREE
-P6,190
+P5,190
 P2,FREE
-P7,280
+P6,380
 """],
     
     [2, """FF,4,T;
@@ -263,11 +263,25 @@ P12,580
 """]
 ]
 
-
 from AllocPartFiss import generateLatex
 
+def parametri_soluzione(params, alg):
+    # TODO: Implement algs
+    """Trasforma i parametri dell'esercizio nella variante con la soluzione (T -> S)."""
+    return params.replace(",T;", ",S;", 1)
+
+ALGORITMI = ["FF", "BF", "WF"]
+
 for es in esercizi_partizioni:
-    print("""\\begin{esercizio}[""" + str(es[0]) + """]
-    """ + generateLatex(es[1]) + """
-\\end{esercizio}
+    if args.soluzioni:
+        print("""\\newpage""")
+    print("""\\begin{esercizio}[""" + str(es[0]) + """]""")
+    print(generateLatex(es[1]) + "\n")
+    if args.soluzioni:
+        print("\\solution")
+        print("")
+        for alg in ALGORITMI:
+            print(generateLatex(parametri_soluzione(es[1], alg)) + "\n")
+
+    print("""\\end{esercizio}
 """)

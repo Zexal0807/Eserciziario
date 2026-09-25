@@ -169,44 +169,52 @@ def eval_steps(pages, alg, page_size):
         return simulate_opt(pages, page_size)
     return []
 
-def main(params, spaces = 1):
+def generateLatex(params):
     p = params.split(";")
-    
+
     alg, page_size, sol = p[0].split(",")
     page_size = int(page_size)
-    
+
     pages = [int(x) for x in p[1].split(",")]
 
+    res = []
+
     if sol == "T":
-        print("    " * spaces + "{")
-        print("    " * (spaces + 1) + "\\vspace{0.25cm}")
-        print("    " * (spaces + 1) + "\\begin{tabular}{" + "|c" * len(pages) + "|}")
-        print("    " * (spaces + 2) + "\\hline")
-        print("    " * (spaces + 2), " & ".join([str(x) for x in pages]) + "\\\\")
-        print("    " * (spaces + 2) + "\\hline")
-        print("    " * (spaces + 1) + "\\end{tabular}")
-        print("    " * spaces + "}")
+        res.append("{")
+        res.append("\\vspace{0.25cm}")
+        res.append("\\begin{tabular}{" + "|c" * len(pages) + "|}")
+        res.append("\\hline")
+        res.append(" & ".join([str(x) for x in pages]) + "\\\\")
+        res.append("\\hline")
+        res.append("\\end{tabular}")
+        res.append("}")
 
     if sol == "S":
         steps = eval_steps(pages, alg, page_size)
-        
-        print("    " * spaces + "{")
-        print("    " * (spaces + 1) + "\\vspace{0.25cm}")
-        print("    " * (spaces + 1) + "\\textbf{" + alg + "}")
-        print("    " * (spaces + 1) + "\\vspace{0.15cm}")
-        print("    " * (spaces + 1))
-        print("    " * (spaces + 1) + "\\begin{tabular}{" + "|c" * (len(pages)+1) + "|}")
-        print("    " * (spaces + 2) + "\\hline")
-        print("    " * (spaces + 2), " & ".join([str(x) for x in pages]) + "& \\\\")
-        print("    " * (spaces + 2) + "\\hline")
-        print("    " * (spaces + 2) + "\\hline")
+
+        res.append("{")
+        res.append("\\vspace{0.25cm}")
+        res.append("\\textbf{" + alg + "}")
+        res.append("\\vspace{0.15cm}")
+        res.append("")
+        res.append("\\begin{tabular}{" + "|c" * (len(pages)+1) + "|}")
+        res.append("\\hline")
+        res.append(" & ".join([str(x) for x in pages]) + "& \\\\")
+        res.append("\\hline")
+        res.append("\\hline")
         for i in range(page_size):
-            print("    " * (spaces + 2) + " &" + " & ".join([str(x['frames'][i]) if len(x['frames']) > i else "" for x in steps]) + "\\\\")
-        print("    " * (spaces + 2) + "\\hline")
-        print("    " * (spaces + 2) + " & ".join(["\\multicolumn{1}{c}{" + ("F" if x['fault'] else "") + "}" for x in steps]))
-        print("    " * (spaces + 1) + "\\end{tabular}")
-        print("    " * spaces + "}")
-        print("    " * spaces)
+            res.append(" &" + " & ".join([str(x['frames'][i]) if len(x['frames']) > i else "" for x in steps]) + "\\\\")
+        res.append("\\hline")
+        res.append(" & ".join(["\\multicolumn{1}{c}{" + ("F" if x['fault'] else "") + "}" for x in steps]))
+        res.append("\\end{tabular}")
+        res.append("}")
+        res.append("")
+
+    return "\n".join(res)
+
+
+def main(params):
+    print(generateLatex(params))
 
 
 # PAGE REPLACEMENTE
@@ -216,4 +224,11 @@ def main(params, spaces = 1):
 
 # main("""FIFO,3,S;
 # 1,2,3,5,6,3,4,5,6
-# """, 2)
+# """)
+
+import sys
+
+# ha un parametro
+if __name__ == "__main__":
+    if len(sys.argv) >= 2:
+        main(sys.argv[1])

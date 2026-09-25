@@ -469,21 +469,25 @@ Effettua lo schedeuling dei seguenti processi, usando l'algoritmo Round Robin co
 
 \section{Memoria a partizione fisse}
 
-Mostra l'evoluzione della memoria dati i seguenti processi e la seguente memoria a partizioni fisse
+Mostra l'evoluzione della memoria dati i seguenti processi e la seguente memoria a partizioni fisse usando l'algoritmo FirstFit, BestFit e WorstFit
 
-% TODO: Implement solution
-\immediate\write18{python3 generate/allocazione_fisse.py > temp/allocazione_fisse.tex}
-\input{./temp/allocazione_fisse.tex}
+\eserciziopy{allocazione_fisse}
 
 \newpage
 
 \section{Memoria a partizione variabili}
 
-Mostra l'evoluzione della memoria dati i seguenti processi e la seguente memoria a partizioni variabili
+Mostra l'evoluzione della memoria dati i seguenti processi e la seguente memoria a partizioni variabili usando l'algoritmo FirstFit, BestFit e WorstFit
 
-% TODO: Implement solution
-\immediate\write18{python3 generate/allocazione_dinamiche.py > temp/allocazione_dinamiche.tex}
-\input{./temp/allocazione_dinamiche.tex}
+\eserciziopy{allocazione_dinamiche}
+
+\newpage
+
+\section{Allocazione delle pagine}
+
+Mostra l'evoluzione delle pagine allocate in memoria dati le seguenti pagine richieste usando gli algoritmi FIFO, LRU e OPT
+
+\eserciziopy{allocazione_pagine}
 
 
 
