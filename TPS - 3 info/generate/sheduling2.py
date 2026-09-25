@@ -138,11 +138,10 @@ P6,4,3"""],
 P2,1,2
 P3,2,3
 P4,3,2
-P5,4,4
-P6,2,1"""],
+P5,2,1"""],
     
     # 21. Due lunghi a t=0, tre corti a t=1,2,3
-    [2, """P1,0,8
+    [2, """P1,0,6
 P2,0,7
 P3,1,2
 P4,2,3
@@ -153,8 +152,7 @@ P5,3,2"""],
 P2,0,4
 P3,0,5
 P4,2,2
-P5,2,3
-P6,2,4"""],
+P5,2,3"""],
     
     # 23. Processo medio a t=0, molti piccoli dopo
     [2, """P1,0,7
@@ -186,22 +184,21 @@ P6,3,2"""],
     # =========================
     
     # 26. Tre lunghi a t=0, tre corti a t=1,2,3
-    [3, """P1,0,8
-P2,0,7
-P3,0,6
+    [3, """P1,0,6
+P2,0,5
+P3,0,4
 P4,1,2
 P5,2,3
 P6,3,2"""],
     
     # 27. Quattro a t=0, due a t=2, due a t=4
     [3, """P1,0,6
-P2,0,5
+P2,0,2
 P3,0,4
 P4,0,3
 P5,2,2
 P6,2,3
-P7,4,4
-P8,4,2"""],
+P7,4,2"""],
     
     # 28. Lungo a t=0, molti corti ravvicinati 1–5
     [3, """P1,0,10
@@ -213,36 +210,33 @@ P6,5,3
 P7,5,2"""],
     
     # 29. Due lunghi a t=0, quattro corti a t=1,2,3,4
-    [3, """P1,0,9
-P2,0,8
+    [3, """P1,0,7
+P2,0,6
 P3,1,2
 P4,2,3
 P5,3,2
 P6,4,4"""],
     
     # 30. Tre a t=0, tre a t=1, tre a t=3
-    [3, """P1,0,7
-P2,0,6
-P3,0,5
+    [3, """P1,0,5
+P2,0,3
+P3,0,2
 P4,1,3
 P5,1,2
 P6,1,4
-P7,3,2
-P8,3,3
-P9,3,2"""],
+P7,3,2"""],
     
     # 31. Quattro a t=0, quattro a t=2, burst molto vari
-    [3, """P1,0,8
-P2,0,6
-P3,0,5
-P4,0,4
+    [3, """P1,0,6
+P2,0,4
+P3,0,2
+P4,0,3
 P5,2,2
 P6,2,3
-P7,2,4
-P8,2,5"""],
+P7,2,4"""],
     
     # 32. Lungo a t=0, molti corti tra 1 e 6
-    [3, """P1,0,12
+    [3, """P1,0,6
 P2,1,2
 P3,2,3
 P4,3,2
@@ -252,8 +246,8 @@ P7,6,2
 P8,6,3"""],
     
     # 33. Tre medi a t=0, cinque corti a t=1..5
-    [3, """P1,0,7
-P2,0,6
+    [3, """P1,0,6
+P2,0,1
 P3,0,5
 P4,1,2
 P5,2,2
@@ -262,8 +256,8 @@ P7,4,2
 P8,5,2"""],
     
     # 34. Due lunghi a t=0, sei corti a t=1..6
-    [3, """P1,0,10
-P2,0,9
+    [3, """P1,0,5
+P2,0,6
 P3,1,2
 P4,2,2
 P5,3,3
@@ -272,32 +266,31 @@ P7,5,2
 P8,6,3"""],
     
     # 35. Quattro a t=0, tre a t=2, tre a t=4
-    [3, """P1,0,7
-P2,0,6
-P3,0,5
-P4,0,4
+    [3, """P1,0,6
+P2,0,1
+P3,1,1
+P4,1,2
 P5,2,2
 P6,2,3
-P7,2,4
+P7,3,1
 P8,4,2
 P9,4,3
 P10,4,2"""],
     
     # 36. Tre a t=0, quattro a t=1, tre a t=3
-    [3, """P1,0,8
-P2,0,6
-P3,0,5
+    [3, """P1,0,2
+P2,0,5
+P3,0,1
 P4,1,2
 P5,1,3
 P6,1,2
-P7,1,4
+P7,2,1
 P8,3,2
-P9,3,3
-P10,3,2"""],
+P9,3,3"""],
     
     # 37. Due lunghi a t=0, molti corti 1..7
-    [3, """P1,0,11
-P2,0,10
+    [3, """P1,0,2
+P2,0,6
 P3,1,2
 P4,2,2
 P5,3,3
@@ -307,18 +300,16 @@ P8,6,3
 P9,7,2"""],
     
     # 38. Quattro a t=0, quattro a t=2, quattro a t=4
-    [3, """P1,0,7
-P2,0,6
-P3,0,5
-P4,0,4
+    [3, """P1,0,3
+P2,0,1
+P3,0,2
+P4,1,2
 P5,2,2
 P6,2,3
 P7,2,4
-P8,2,5
+P8,3,1
 P9,4,2
-P10,4,3
-P11,4,2
-P12,4,4"""]
+P10,4,3"""]
 ]
 
 from ProcessTable import generateLatex as generateTabella
@@ -332,14 +323,16 @@ if not args.soluzioni:
 """)
 
 for es in esercizi_rr:
+    if args.soluzioni:
+        print("""\\newpage""")
     print("""\\begin{esercizio}[""" + str(es[0]) + """]
     """)
     print(generateTabella(es[1]))
     if args.soluzioni:
         print("\\solution")
         print("")
-        # for alg in ALGORITMI:
-        #     print(generateScheduling(alg + ";\n" + es[1]) + "\n")
+        for alg in ALGORITMI:
+            print(generateScheduling(alg + ";\n" + es[1]) + "\n")
 
     print("""\\end{esercizio}
 """)
