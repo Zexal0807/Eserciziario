@@ -279,8 +279,33 @@ Risolvere i seguenti esercizi, scrivendo la pseudocodifica e il flowchart corris
     Dati due istanti di tempo nella stessa giornata (ore, minuti e secondi) calcolare i secondi che dividono i due istanti temporali
     \ifsoluzioni
         \solution
+        
+        \begin{filecontents*}{temp/fl10f.txt}
+        DECLARE Int h1, m1, s1, h2, m2, s2
 
-        ECCO LA SOLUZIONE
+        DO
+            INPUT Leggi h1
+            INPUT Leggi m1
+            INPUT Leggi s1
+        WHILE h1 < 0 || h1 > 23 || m1 < 0 || m1 > 59 || s1 < 0 || s1 > 59
+
+        DO
+            INPUT Leggi h2
+            INPUT Leggi m2
+            INPUT Leggi s2
+        WHILE h2 < 0 || h2 > 23 || m2 < 0 || m2 > 59 || s2 < 0 || s2 > 59
+
+
+        OUTPUT h1 * 60 * 60 + m1 * 60 + s1  - (h2 * 60 * 60 + m2 * 60 + s2)
+        \end{filecontents*}
+
+        \immediate\write18{python3 ../scripts/PseudocodeGenerator.py -f temp/fl10f.txt > temp/fl10p.tex}
+        \input{temp/fl10p.tex}
+        \newpage
+
+        \immediate\write18{python3 ../scripts/FlowChartGenerator.py -f temp/fl10f.txt > temp/fl10f.tex}
+        \input{temp/fl10f.tex}
+        \newpage
     \fi
 \end{esercizio}
 
@@ -293,8 +318,31 @@ Risolvere i seguenti esercizi, scrivendo la pseudocodifica e il flowchart corris
     \end{itemize}
     \ifsoluzioni
         \solution
+        
+        \begin{filecontents*}{temp/fl11f.txt}
+        DECLARE Int a, b
 
-        ECCO LA SOLUZIONE
+        INPUT Leggi a
+        INPUT Leggi b
+
+        WHILE a != b
+            IF a > b
+                PROCESS a = a - b
+            ELSE
+                PROCESS b = b - a
+            END IF
+        END WHILE
+
+        OUTPUT a
+        \end{filecontents*}
+
+        \immediate\write18{python3 ../scripts/PseudocodeGenerator.py -f temp/fl11f.txt > temp/fl11p.tex}
+        \input{temp/fl11p.tex}
+        \newpage
+
+        \immediate\write18{python3 ../scripts/FlowChartGenerator.py -f temp/fl11f.txt > temp/fl11f.tex}
+        \input{temp/fl11f.tex}
+        \newpage
     \fi
 \end{esercizio}
 
