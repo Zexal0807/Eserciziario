@@ -192,6 +192,112 @@ Risolvere i seguenti esercizi, scrivendo la pseudocodifica e il flowchart corris
 \end{esercizio}
 
 
+\begin{esercizio}[3]
+    ES 7 di Faiella
+    \ifsoluzioni
+        \solution
+
+        ECCO LA SOLUZIONE
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Dati i coefficienti A, B, C di una generica equazione di secondo grado del tipo $Ax^2 + Bx + C = 0$, stampare la/le soluzione/i se esistono
+    \ifsoluzioni
+        \solution
+        
+        \begin{filecontents*}{temp/fl8f.txt}
+        DECLARE Real a, b, c, delta
+        INPUT Leggi a
+        INPUT Leggi b
+        INPUT Leggi c
+
+        PROCESS delta = b * b - 4 * a * c
+
+        IF delta < 0
+            OUTPUT "Impossibile"
+        ELSE
+            IF delta == 0
+                OUTPUT "Due soluzioni coincidenti"
+                OUTPUT -b / (2 * a)
+            ELSE
+                OUTPUT "Due soluzioni"
+                OUTPUT (-b + SQRT(delta)) / (2 * a)
+                OUTPUT (-b - SQRT(delta))/ (2 * a)
+            END IF
+        END IF
+        \end{filecontents*}
+
+        \immediate\write18{python3 ../scripts/PseudocodeGenerator.py -f temp/fl8f.txt > temp/fl8p.tex}
+        \input{temp/fl8p.tex}
+        \newpage
+
+        \immediate\write18{python3 ../scripts/FlowChartGenerator.py -f temp/fl8f.txt > temp/fl8f.tex}
+        \input{temp/fl8f.tex}
+        \newpage
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Dati in ingresso i coefficienti m1, q1, m2, q2 di due rette di equazione $y = m_1x + q_1$ e $y = m_2x + q_2$, stampare se le due rette sono perpendicolari, parallele, incidenti o coincidenti.
+    \ifsoluzioni
+        \solution
+        
+        \begin{filecontents*}{temp/fl9f.txt}
+        DECLARE Real m1, q1, m2, q2
+        INPUT Leggi m1
+        INPUT Leggi q1
+        INPUT Leggi m2
+        INPUT Leggi q2
+
+        IF m1 == m2
+            IF q1 == q2
+                OUTPUT "Coincidenti"
+            ELSE
+                OUTPUT "Parallele"
+            END IF
+        ELSE
+            IF m1 == -1 / m2
+                OUTPUT "Perpendicolari"
+            ELSE
+                OUTPUT "Incidenti"
+            END IF
+        END IF
+        \end{filecontents*}
+
+        \immediate\write18{python3 ../scripts/PseudocodeGenerator.py -f temp/fl9f.txt > temp/fl9p.tex}
+        \input{temp/fl9p.tex}
+        \newpage
+
+        \immediate\write18{python3 ../scripts/FlowChartGenerator.py -f temp/fl9f.txt > temp/fl9f.tex}
+        \input{temp/fl9f.tex}
+        \newpage
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Dati due istanti di tempo nella stessa giornata (ore, minuti e secondi) calcolare i secondi che dividono i due istanti temporali
+    \ifsoluzioni
+        \solution
+
+        ECCO LA SOLUZIONE
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[2]
+    Dati due numeri interi A e B, calcolare il Massimo Comun Divisore usando la seguente tecnica:
+    \begin{itemize}
+        \item se A = B allora MCD = A
+        \item se A > B allora A = A - B e ripeti
+        \item se A < B allora B = B - A e ripeti
+    \end{itemize}
+    \ifsoluzioni
+        \solution
+
+        ECCO LA SOLUZIONE
+    \fi
+\end{esercizio}
+
 
 \newpage
 
