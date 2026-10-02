@@ -311,7 +311,7 @@ Risolvere i seguenti esercizi, scrivendo la pseudocodifica e il flowchart corris
 
 \begin{esercizio}[2]
     Dati due numeri interi A e B, calcolare il Massimo Comun Divisore usando la seguente tecnica:
-    \begin{itemize}
+    \begin{itemize}[labelsep=0.3cm]
         \item se A = B allora MCD = A
         \item se A > B allora A = A - B e ripeti
         \item se A < B allora B = B - A e ripeti
@@ -342,6 +342,34 @@ Risolvere i seguenti esercizi, scrivendo la pseudocodifica e il flowchart corris
 
         \immediate\write18{python3 ../scripts/FlowChartGenerator.py -f temp/fl11f.txt > temp/fl11f.tex}
         \input{temp/fl11f.tex}
+        \newpage
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[2]
+     Ad un concorso partecipano 15 fotografi. Per ciascun fotografo viene inserito il punteggio ottenuto (compreso tra 0 e 100). \\
+    Scrivere la pseudocodifica e il flowchart che: 
+    \begin{enumerate}  [labelsep=0.3cm]
+        \item acquisiscano il punteggio di ciascun fotografo; 
+        \item calcolino la somma totale dei punteggi; 
+        \item individuino il punteggio più alto ottenuto; 
+        \item contino quanti fotografi hanno ottenuto un punteggio maggiore o uguale a 60; 
+        \item calcolino il punteggio medio dei partecipanti; 
+        \item visualizzino il punteggio massimo, il numero di fotografi promossi e la media dei punteggi. 
+    \end{enumerate}
+    \ifsoluzioni
+        \solution
+
+        \begin{filecontents*}{temp/fl12f.txt}
+        
+        \end{filecontents*}
+
+        \immediate\write18{python3 ../scripts/PseudocodeGenerator.py -f temp/fl12f.txt > temp/fl12p.tex}
+        \input{temp/fl12p.tex}
+        \newpage
+
+        \immediate\write18{python3 ../scripts/FlowChartGenerator.py -f temp/fl12f.txt > temp/fl12f.tex}
+        \input{temp/fl12f.tex}
         \newpage
     \fi
 \end{esercizio}
