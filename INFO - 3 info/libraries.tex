@@ -147,3 +147,67 @@
   belowskip=1.2em,
   captionpos=b
 }
+
+
+\definecolor{cppdirective}{RGB}{190,50,160} % rosa/viola
+
+\lstdefinelanguage{CPP}{
+  sensitive=true,
+  % Parole chiave del linguaggio
+  morekeywords={
+    alignas, alignof, and, and_eq, asm, auto, bitand, bitor, bool, break,
+    case, catch, char, char8_t, char16_t, char32_t, class, compl, concept,
+    const, consteval, constexpr, constinit, const_cast, continue, co_await,
+    co_return, co_yield, decltype, default, delete, do, double,
+    dynamic_cast, else, enum, explicit, export, extern, false, final,
+    float, for, friend, goto, if, inline, int, long, mutable, namespace,
+    new, noexcept, not, not_eq, nullptr, operator, or, or_eq, override,
+    private, protected, public, register, reinterpret_cast, requires,
+    return, short, signed, sizeof, static, static_assert, static_cast,
+    struct, switch, template, this, thread_local, throw, true, try,
+    typedef, typeid, typename, union, unsigned, using, virtual, void,
+    volatile, wchar_t, while, xor, xor_eq
+  },
+  % Tipi e identificatori della libreria standard
+  morekeywords=[2]{
+    std, string, vector, map, set, unordered_map, unordered_set, array,
+    list, deque, queue, stack, pair, tuple, optional, variant,
+    unique_ptr, shared_ptr, weak_ptr, make_unique, make_shared,
+    cin, cout, cerr, endl, size_t, int8_t, int16_t, int32_t, int64_t,
+    uint8_t, uint16_t, uint32_t, uint64_t
+  },
+  % Righe del preprocessore: tutta la riga che inizia con # in rosa/viola
+  morecomment=[l][\color{cppdirective}\bfseries]{\#},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[b]'
+}
+
+\lstdefinestyle{cpp}{
+  language=CPP,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  keywordstyle=[2]\color{teal!70!black},
+  commentstyle=\color{green!45!black}\itshape,
+  stringstyle=\color{red!65!black},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  numbersep=10pt,
+  frame=single,
+  rulecolor=\color{black!45},
+  backgroundcolor=\color{gray!7},
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showspaces=false,
+  showstringspaces=false,
+  tabsize=4,
+  xleftmargin=1.6em,
+  framexleftmargin=1.4em,
+  aboveskip=1.2em,
+  belowskip=1.2em,
+  captionpos=b
+}
+
