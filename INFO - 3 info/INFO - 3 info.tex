@@ -533,7 +533,8 @@ int main() {
 \end{esercizio}
 
 \begin{esercizio}[1]
-    Calcola la misura del perimetro e dell’area di un cerchio dato il raggio.\ifsoluzioni
+    Calcola la misura del perimetro e dell’area di un cerchio dato il raggio.
+    \ifsoluzioni
     \solution
     \begin{lstlisting}[style=cpp]
 #include <iostream>
@@ -555,33 +556,34 @@ int main() {
 }
     \end{lstlisting}
     \fi
-
     
+
 \end{esercizio}
 
 \begin{esercizio}[1]
-    Data una temperatura in gradi centigradi, calcolare la temperatura in gradi Fahrenheit. \ifsoluzioni
-    \solution
-    \begin{lstlisting}[style=cpp]
+    Data una temperatura in gradi centigradi, calcolare la temperatura in gradi Fahrenheit.
+    \ifsoluzioni
+        \solution
+        \begin{lstlisting}[style=cpp]
 #include <iostream>
-using namespace std;
+        using namespace std;
 
-int main() {
-    float c, f;
+        int main() {
+            float c, f;
 
-    cout << "Inserisci la temperatura in gradi Celsius: ";
-    cin >> c;
+            cout << "Inserisci la temperatura in gradi Celsius: ";
+            cin >> c;
 
-    f = (c * 9 / 5) + 32;
+            f = (c * 9 / 5) + 32;
 
-    cout << "Temperatura in Fahrenheit = " << f << endl;
+            cout << "Temperatura in Fahrenheit = " << f << endl;
 
-    return 0;
-}
-    \end{lstlisting}
-    \fi
+            return 0;
+        }
+        \end{lstlisting}
+    \fi  
 
-    
+
 \end{esercizio}
 
 % \section{Software}
