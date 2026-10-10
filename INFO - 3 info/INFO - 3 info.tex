@@ -29,7 +29,7 @@
                         Eserciziario
                     }
                     \\[15pt]
-                    {\Huge TPS}
+                    {\Huge Informatica}
                     \\[15pt]
                     {\Large Classe III - informatica}
                     \\[20pt] 
@@ -347,7 +347,7 @@ Risolvere i seguenti esercizi, scrivendo la pseudocodifica e il flowchart corris
 \end{esercizio}
 
 \begin{esercizio}[2]
-     Ad un concorso partecipano 15 fotografi. Per ciascun fotografo viene inserito il punteggio ottenuto (compreso tra 0 e 100). \\
+    Ad un concorso partecipano 15 fotografi. Per ciascun fotografo viene inserito il punteggio ottenuto (compreso tra 0 e 100). \\
     Scrivere la pseudocodifica e il flowchart che: 
     \begin{enumerate}  [labelsep=0.3cm]
         \item acquisiscano il punteggio di ciascun fotografo; 
@@ -395,17 +395,194 @@ Risolvere i seguenti esercizi, scrivendo la pseudocodifica e il flowchart corris
 % %	CHAPTER 2
 % %----------------------------------------------------------------------------------------
 
-% \chapter{Sistema binario}
+ \chapter{Linguaggio c++}
 
-% \section{Conversione dalla base 10 alla base 2}
+ \section{Sequenza}
 
-% \begin{esercizio}[1]
-%     \textbf{Esercizio guidato}
+\begin{esercizio}[1]
+    Dati due numeri, stampare in output la somma, la differenza e il prodotto.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
 
-%     Convertire il numero 80 dalla base 10 alla base 2
+int main() 
+{
+    float a, b;
 
-%     \lipsum[1]
-% \end{esercizio}
+    cout << "Inserisci due numeri: ";
+    cin >> a >> b;
+
+    cout << "Somma = " << a + b << endl;
+    cout << "Differenza = " << a - b << endl;
+    cout << "Prodotto = " << a * b << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+
+    
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Calcolare l'area e il perimetro di un rettangolo date le misure della base e dell'altezza.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    double base, altezza;
+
+    cout << "Inserisci base e altezza: ";
+    cin >> base >> altezza;
+
+    double area = base * altezza;
+    double perimetro = 2 * (base + altezza);
+
+    cout << "Area = " << area << endl;
+    cout << "Perimetro = " << perimetro << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+
+    
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Dati tre voti calcolarne la media.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    double v1, v2, v3;
+
+    cout << "Inserisci tre voti: ";
+    cin >> v1 >> v2 >> v3;
+
+    double media = (v1 + v2 + v3) / 3;
+
+    cout << "Media = " << media << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+
+    
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Dato un prezzo, calcolare il prezzo con IVA al 22 percento.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    double prezzo;
+
+    cout << "Inserisci il prezzo: ";
+    cin >> prezzo;
+
+    double prezzoIVA = prezzo * 1.22;
+
+    cout << "Prezzo con IVA = " << prezzoIVA << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+
+    
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Dato un prezzo e una percentuale di sconto, calcolare il prezzo scontato.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    double prezzo, sconto;
+
+    cout << "Inserisci prezzo e percentuale di sconto: ";
+    cin >> prezzo >> sconto;
+
+    double prezzoScontato = prezzo - (prezzo * sconto / 100);
+
+    cout << "Prezzo scontato = " << prezzoScontato << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+
+    
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Calcola la misura del perimetro e dell’area di un cerchio dato il raggio.\ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    float r, perimetro, area;
+    
+    cout << "Inserisci il raggio: ";
+    cin >> r;
+
+    perimetro = 2 * 3.14 * r;
+    area = 3.14 * r * r;
+
+    cout << "Perimetro = " << perimetro << endl;
+    cout << "Area = " << area << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+
+    
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Data una temperatura in gradi centigradi, calcolare la temperatura in gradi Fahrenheit. \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() {
+    float c, f;
+
+    cout << "Inserisci la temperatura in gradi Celsius: ";
+    cin >> c;
+
+    f = (c * 9 / 5) + 32;
+
+    cout << "Temperatura in Fahrenheit = " << f << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+
+    
+\end{esercizio}
 
 % \section{Software}
 
