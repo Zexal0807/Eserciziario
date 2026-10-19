@@ -391,13 +391,13 @@ Risolvere i seguenti esercizi, scrivendo la pseudocodifica e il flowchart corris
 % \end{esercizio}
 
 
-% %----------------------------------------------------------------------------------------
-% %	CHAPTER 2
-% %----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%	CHAPTER 2
+%----------------------------------------------------------------------------------------
 
- \chapter{Linguaggio c++}
+\chapter{Linguaggio c++}
 
- \section{Sequenza}
+\section{Sequenza}
 
 \begin{esercizio}[1]
     Dati due numeri, stampare in output la somma, la differenza e il prodotto.
@@ -422,8 +422,6 @@ int main()
 }
     \end{lstlisting}
     \fi
-
-    
 \end{esercizio}
 
 \begin{esercizio}[1]
@@ -450,8 +448,6 @@ int main() {
 }
     \end{lstlisting}
     \fi
-
-    
 \end{esercizio}
 
 \begin{esercizio}[1]
@@ -476,8 +472,6 @@ int main() {
 }
     \end{lstlisting}
     \fi
-
-    
 \end{esercizio}
 
 \begin{esercizio}[1]
@@ -502,8 +496,6 @@ int main() {
 }
     \end{lstlisting}
     \fi
-
-    
 \end{esercizio}
 
 \begin{esercizio}[1]
@@ -528,8 +520,6 @@ int main() {
 }
     \end{lstlisting}
     \fi
-
-    
 \end{esercizio}
 
 \begin{esercizio}[1]
@@ -556,8 +546,6 @@ int main() {
 }
     \end{lstlisting}
     \fi
-    
-
 \end{esercizio}
 
 \begin{esercizio}[1]
@@ -566,27 +554,86 @@ int main() {
         \solution
         \begin{lstlisting}[style=cpp]
 #include <iostream>
-        using namespace std;
+using namespace std;
 
-        int main() {
-            float c, f;
+int main() {
+    float c, f;
 
-            cout << "Inserisci la temperatura in gradi Celsius: ";
-            cin >> c;
+    cout << "Inserisci la temperatura in gradi Celsius: ";
+    cin >> c;
 
-            f = (c * 9 / 5) + 32;
+    f = (c * 9 / 5) + 32;
 
-            cout << "Temperatura in Fahrenheit = " << f << endl;
+    cout << "Temperatura in Fahrenheit = " << f << endl;
 
-            return 0;
-        }
+    return 0;
+}
         \end{lstlisting}
     \fi  
-
-
 \end{esercizio}
 
-% \section{Software}
+\section{Cicli}
+
+\begin{esercizio}[1]
+    Leggere e fare la media interi di alcuni voti (massimo 10), il programma deve terminare quando viene inserito un numero non valido
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    int n, voto, somma = 0;
+
+    do {
+        cout << "Inserisci il voto" << endl;    
+        cin >> voto;
+        if(voto >= 1 && voto <= 10){
+            n = n + 1;
+            somma = somma + voto;
+        }
+    } while (voto >= 1 && voto <= 10);
+
+    cout << "Media = " << (float) somma / n << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+
+\begin{esercizio}[1]
+    Leggere e trovare il massimo di alcune misurazioni di temperatura (tra 30 e 45 gradi), il programma deve terminare quando viene inserito un numero non valido
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    float temperatura, massimo = 0;
+
+    do {
+        cout << "Inserisci la temperatura" << endl;    
+        cin >> temperatura;
+        if(temperatura >= 30 && temperatura <= 45) {
+            if (temperatura > massimo) {
+                massimo = temperatura;
+            }
+        }
+    } while (temperatura >= 30 && temperatura <= 45);
+
+    cout << "Massimo = " << massimo << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
 
 % \begin{esercizio}[1]
 %     \textbf{Esercizio guidato}
