@@ -634,6 +634,122 @@ int main()
     \fi
 \end{esercizio}
 
+\begin{esercizio}[2]
+    Sapendo che il prezzo del biglietto intero è 12 euro e vengono applicati i seguenti sconti:
+    \begin{itemize} [labelsep=0.3cm]
+        \item bambini gratis fino a 10 anni
+        \item sconto 20\% ai ragazzi fino a 15 anni
+        \item sconto 50\% agli anziani sopra i 75 anni
+    \end{itemize}
+    
+    Scrivere un algoritmo che, chieda per chiè il biglietto (b - bambino, r - ragazzo oppure a - anziano) e calcoli l'importo totale incassato a fine giornata, il numero di clienti serviti e il prezzo medio del biglietto per la giornata corrente (la fine giornata si ha con l'inserimento di 'f')
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    char tipo;
+    int clienti = 0;
+    double prezzo, totale = 0, media;
+
+    cout << "Inserisci il tipo di biglietto:" << endl;
+    cout << "b = bambino, r = ragazzo, a = anziano, f = fine giornata" << endl;
+    cin >> tipo;
+
+    while (tipo != 'f') {
+        switch (tipo) {
+            case 'b':
+                prezzo = 0;
+                totale = totale + prezzo;
+                clienti = clienti + 1;
+                cout << "Prezzo biglietto: " << prezzo <<  endl;
+                break;
+
+            case 'r':
+                prezzo = 12 * 0.80;
+                totale = totale + prezzo;
+                clienti = clienti + 1;
+                cout << "Prezzo biglietto: " << prezzo << endl;
+                break;
+
+            case 'a':
+                prezzo = 12 * 0.50;
+                totale = totale + prezzo;
+                clienti = clienti + 1;
+                cout << "Prezzo biglietto: " << prezzo << endl;
+                break;
+
+            default:
+                cout << "Scelta non valida" << endl;
+                break;
+        }
+
+        cout << endl;
+        cout << "Inserisci il tipo di biglietto:" << endl;
+        cout << "b = bambino, r = ragazzo, a = anziano, f = fine giornata" << endl;
+        cin >> tipo;
+    }
+
+    cout << endl;
+    cout << "Fine giornata." << endl;
+    cout << "Numero clienti serviti: " << clienti << endl;
+    cout << "Importo totale incassato: " << totale << endl;
+
+    if (clienti > 0) {
+        media = totale / clienti;
+        cout << "Prezzo medio del biglietto: " << media << endl;
+    } else {
+        cout << "Prezzo medio del biglietto: 0" << endl;
+    }
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[2]
+    Progettare e scrivere un programma che, dato in ingresso un numero intero n, visualizzi un triangolo rettangolo di asterischi di lato n
+
+    \emph{Esempio con n = 3}
+    
+    *
+
+    **
+    
+    ***
+    
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    int n;
+    int i, j;
+
+    cout << "Inserisci un numero intero n: ";
+    cin >> n;
+
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= i; j++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+
+
 
 % \begin{esercizio}[1]
 %     \textbf{Esercizio guidato}
