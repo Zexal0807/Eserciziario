@@ -572,6 +572,575 @@ int main() {
     \fi  
 \end{esercizio}
 
+\section{Casting e selezione}
+
+\begin{esercizio}[1]
+    Acquisire due numeri interi e calcolare: la somma, la differenza, il prodotto e la divisione con risultato decimale.\\
+    \textit{Suggerimento: utilizzare il casting per ottenere una divisione reale.}
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b;
+
+    cout << "Inserisci il primo numero" << endl;
+    cin >> a;
+    cout << "Inserisci il secondo numero" << endl;
+    cin >> b;
+
+    cout << "Somma = " << a + b << endl;
+    cout << "Differenza = " << a - b << endl;
+    cout << "Prodotto = " << a * b << endl;
+    if (b != 0)
+        cout << "Divisione = " << (float) a / b << endl;
+    else
+        cout << "Divisione impossibile (divisione per zero)" << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Acquisire il nome di uno studente (\texttt{string}) e un carattere (\texttt{char}). Visualizzare un messaggio di saluto personalizzato e il codice ASCII del carattere inserito.\\
+    \textit{Suggerimento: utilizzare il casting da char a int.}
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string nome;
+    char c;
+
+    cout << "Inserisci il nome dello studente" << endl;
+    cin >> nome;
+    cout << "Inserisci un carattere" << endl;
+    cin >> c;
+
+    cout << "Ciao " << nome << "!" << endl;
+    cout << "Il codice ASCII di '" << c << "' = " << (int) c << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Acquisire un importo in euro (anche con decimali). Calcolare i centesimi tramite casting.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double importo;
+    int euro, centesimi;
+
+    cout << "Inserisci l'importo in euro" << endl;
+    cin >> importo;
+
+    euro = (int) importo;
+    // si somma 0.5 per arrotondare ed evitare errori di rappresentazione
+    centesimi = (int) ((importo - euro) * 100 + 0.5);
+
+    cout << "Euro = " << euro << endl;
+    cout << "Centesimi = " << centesimi << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[1]
+    Dato un voto numerico, visualizzare il giudizio corrispondente (insufficiente, sufficiente, ...) utilizzando una struttura di \texttt{if} a cascata.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int voto;
+
+    cout << "Inserisci il voto (da 1 a 10)" << endl;
+    cin >> voto;
+
+    if (voto < 1 || voto > 10)
+        cout << "Voto non valido" << endl;
+    else if (voto < 4)
+        cout << "Gravemente insufficiente" << endl;
+    else if (voto < 6)
+        cout << "Insufficiente" << endl;
+    else if (voto == 6)
+        cout << "Sufficiente" << endl;
+    else if (voto == 7)
+        cout << "Discreto" << endl;
+    else if (voto == 8)
+        cout << "Buono" << endl;
+    else if (voto == 9)
+        cout << "Distinto" << endl;
+    else
+        cout << "Ottimo" << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[2]
+    Scrivere un programma che chieda all'utente di inserire un singolo carattere (\texttt{char}). Utilizzando i cast e le condizioni \texttt{if}, determinare e stampare se il carattere inserito è:
+    \begin{enumerate}
+        \item una lettera maiuscola (da 'A' a 'Z');
+        \item una lettera minuscola (da 'a' a 'z');
+        \item una cifra numerica (da '0' a '9');
+        \item un carattere speciale / simbolo (tutto il resto).
+    \end{enumerate}
+    \textit{Suggerimento: confrontare direttamente i caratteri usando i loro valori ASCII oppure effettuare un cast esplicito a \texttt{int} per vedere il codice numerico del carattere.}
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char c;
+
+    cout << "Inserisci un carattere" << endl;
+    cin >> c;
+
+    int codice = (int) c;
+
+    if (codice >= 65 && codice <= 90)
+        cout << "Lettera maiuscola" << endl;
+    else if (codice >= 97 && codice <= 122)
+        cout << "Lettera minuscola" << endl;
+    else if (codice >= 48 && codice <= 57)
+        cout << "Cifra numerica" << endl;
+    else
+        cout << "Carattere speciale" << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[2]
+    Scrivere un programma che riceva in input due numeri interi (\texttt{int a} e \texttt{int b}) che rappresentano il numeratore e il denominatore di una divisione.
+    \begin{itemize}
+        \item Prima di eseguire la divisione, verificare tramite un \texttt{if} se il denominatore è zero (\texttt{b == 0}).
+        \item Se è zero, stampare un messaggio di errore.
+        \item Se non è zero, eseguire la divisione calcolando il risultato con la virgola mobile (\texttt{double}). Effettuare il casting \texttt{(double)} su almeno uno dei due operandi per evitare la divisione intera troncata, e stampare il risultato finale.
+    \end{itemize}
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b;
+
+    cout << "Inserisci il numeratore" << endl;
+    cin >> a;
+    cout << "Inserisci il denominatore" << endl;
+    cin >> b;
+
+    if (b == 0)
+        cout << "Errore: divisione per zero" << endl;
+    else
+        cout << "Risultato = " << (double) a / b << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[2]
+    Un negozio applica sconti diversi in base a un codice carattere inserito dall'utente. Scrivere un programma che prenda in input il prezzo originale di un articolo (\texttt{double}) e un codice promozionale (\texttt{char}). Usare una struttura \texttt{if-else if-else} per applicare le seguenti regole:
+    \begin{itemize}
+        \item codice 'A' o 'a': sconto del 20\%;
+        \item codice 'B' o 'b': sconto del 10\%;
+        \item codice 'C' o 'c': sconto del 5\%;
+        \item qualsiasi altro carattere: nessuno sconto (0\%).
+    \end{itemize}
+    \textit{Richiesta extra:} per calcolare correttamente lo sconto e stampare i centesimi in modo preciso, fare attenzione ai tipi di dato. Se necessario, eseguire un cast esplicito del prezzo o delle percentuali. Stampare il prezzo finale scontato.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    double prezzo, prezzoFinale;
+    int percentuale;
+    char codice;
+
+    cout << "Inserisci il prezzo originale" << endl;
+    cin >> prezzo;
+    cout << "Inserisci il codice promozionale" << endl;
+    cin >> codice;
+
+    if (codice == 'A' || codice == 'a')
+        percentuale = 20;
+    else if (codice == 'B' || codice == 'b')
+        percentuale = 10;
+    else if (codice == 'C' || codice == 'c')
+        percentuale = 5;
+    else
+        percentuale = 0;
+
+    // cast a double per evitare la divisione intera (es. 20 / 100 = 0)
+    prezzoFinale = prezzo - prezzo * ((double) percentuale / 100);
+
+    cout << fixed << setprecision(2);
+    cout << "Sconto applicato = " << percentuale << "%" << endl;
+    cout << "Prezzo finale = " << prezzoFinale << " euro" << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\section{Selezione e switch case}
+
+\begin{esercizio}[1]
+    Chiedere all'utente di inserire la propria età (intero). Tramite un \texttt{if-else}, verificare se ha almeno 18 anni. Stampare un messaggio di autorizzazione o di blocco per l'apertura del conto.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int eta;
+
+    cout << "Inserisci la tua eta" << endl;
+    cin >> eta;
+
+    if (eta >= 18)
+        cout << "Apertura del conto autorizzata" << endl;
+    else
+        cout << "Apertura del conto bloccata: occorre essere maggiorenni" << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[1]
+    L'utente inserisce il totale parziale della spesa (\texttt{double}). Con un \texttt{if}, verificare se supera i 50,00\,\texteuro. Se li supera, applicare uno sconto fisso di 5,00\,\texteuro; in caso contrario, lasciare il totale invariato. Stampare l'importo finale.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double totale;
+
+    cout << "Inserisci il totale della spesa" << endl;
+    cin >> totale;
+
+    if (totale > 50.0)
+        totale = totale - 5.0;
+
+    cout << "Importo finale = " << totale << " euro" << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[2]
+    Mostrare un menu con tre opzioni di pagamento (1: Carta, 2: PayPal, 3: Bonifico). Usare uno \texttt{switch-case} per intercettare la scelta e associare a ciascuna un messaggio di conferma e una piccola commissione fissa (0\,\texteuro\ per carta, 1,50\,\texteuro\ per PayPal, 2,00\,\texteuro\ per bonifico) da sommare a un importo fisso.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    const double IMPORTO = 50.0;
+    double commissione = 0;
+    int scelta;
+
+    cout << "Metodo di pagamento" << endl;
+    cout << "1: Carta" << endl;
+    cout << "2: PayPal" << endl;
+    cout << "3: Bonifico" << endl;
+    cin >> scelta;
+
+    switch (scelta)
+    {
+        case 1:
+            cout << "Hai scelto il pagamento con carta" << endl;
+            commissione = 0;
+            break;
+        case 2:
+            cout << "Hai scelto il pagamento con PayPal" << endl;
+            commissione = 1.50;
+            break;
+        case 3:
+            cout << "Hai scelto il pagamento con bonifico" << endl;
+            commissione = 2.00;
+            break;
+        default:
+            cout << "Scelta non valida" << endl;
+            return 1;
+    }
+
+    cout << "Importo = " << IMPORTO << " euro" << endl;
+    cout << "Commissione = " << commissione << " euro" << endl;
+    cout << "Totale da pagare = " << IMPORTO + commissione << " euro" << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[1]
+    L'utente inserisce il saldo attuale del conto (\texttt{double}). Utilizzando una catena di \texttt{if} a cascata, valutare lo stato: saldo ottimo ($> 1000$\,\texteuro), saldo regolare (tra 0 e 1000\,\texteuro), saldo in rosso leggero (tra $-500$ e 0\,\texteuro\ per via di un fido concesso) e conto bloccato (sotto $-500$\,\texteuro).
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double saldo;
+
+    cout << "Inserisci il saldo del conto" << endl;
+    cin >> saldo;
+
+    if (saldo > 1000)
+        cout << "Saldo ottimo" << endl;
+    else if (saldo >= 0)
+        cout << "Saldo regolare" << endl;
+    else if (saldo >= -500)
+        cout << "Saldo in rosso leggero (fido in uso)" << endl;
+    else
+        cout << "Conto bloccato" << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[2]
+    L'utente inserisce il giorno della settimana tramite un numero da 1 a 5. Usare uno \texttt{switch-case} per stampare il nome del giorno. All'interno del \texttt{case}, usare un \texttt{if} per verificare se si tratta del giorno di chiusura (lunedì) o di un giorno di punta (venerdì), applicando un messaggio o una regola di tariffa speciale per i dipendenti.
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    const int GIORNO_CHIUSURA = 1;
+    const int GIORNO_PUNTA = 5;
+    int giorno;
+
+    cout << "Inserisci il giorno della settimana (1-5)" << endl;
+    cin >> giorno;
+
+    switch (giorno)
+    {
+        case 1:
+            cout << "Lunedi" << endl;
+            if (giorno == GIORNO_CHIUSURA)
+                cout << "Giorno di chiusura: i dipendenti hanno il giorno di riposo" << endl;
+            break;
+        case 2:
+            cout << "Martedi" << endl;
+            cout << "Tariffa normale per i dipendenti" << endl;
+            break;
+        case 3:
+            cout << "Mercoledi" << endl;
+            cout << "Tariffa normale per i dipendenti" << endl;
+            break;
+        case 4:
+            cout << "Giovedi" << endl;
+            cout << "Tariffa normale per i dipendenti" << endl;
+            break;
+        case 5:
+            cout << "Venerdi" << endl;
+            if (giorno == GIORNO_PUNTA)
+                cout << "Giorno di punta: tariffa speciale maggiorata per i dipendenti" << endl;
+            break;
+        default:
+            cout << "Giorno non valido" << endl;
+    }
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[3]
+    Simulare una scelta di metodo di pagamento:
+    \begin{enumerate}
+        \item L'utente sceglie il metodo di pagamento tramite uno \texttt{switch-case} (1: Carta, 2: PayPal).
+        \item Subito dopo, inserisce l'importo totale del carrello e un carattere che indica se possiede la carta fedeltà (\texttt{S} o \texttt{N}).
+        \item Tramite un blocco \texttt{if} annidato, verificare se la spesa supera 100\,\texteuro\ e se possiede la carta fedeltà: in tal caso, applicare un doppio vantaggio (spedizione gratuita e ulteriore sconto del 10\%).
+    \end{enumerate}
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int metodo;
+    double totale;
+    char fedelta;
+
+    cout << "Metodo di pagamento (1: Carta, 2: PayPal)" << endl;
+    cin >> metodo;
+
+    switch (metodo)
+    {
+        case 1:
+            cout << "Pagamento con carta" << endl;
+            break;
+        case 2:
+            cout << "Pagamento con PayPal" << endl;
+            break;
+        default:
+            cout << "Metodo non valido" << endl;
+            return 1;
+    }
+
+    cout << "Inserisci l'importo del carrello" << endl;
+    cin >> totale;
+    cout << "Possiedi la carta fedelta? (S/N)" << endl;
+    cin >> fedelta;
+
+    if (totale > 100)
+    {
+        if (fedelta == 'S' || fedelta == 's')
+        {
+            totale = totale * 0.90;
+            cout << "Spedizione gratuita + sconto del 10%" << endl;
+        }
+        else
+        {
+            cout << "Nessun vantaggio aggiuntivo (carta fedelta assente)" << endl;
+        }
+    }
+    else
+    {
+        cout << "Nessun vantaggio aggiuntivo (spesa non superiore a 100 euro)" << endl;
+    }
+
+    cout << "Totale finale = " << totale << " euro" << endl;
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
+\begin{esercizio}[3]
+    Un portale bancario richiede un'interazione completa in sequenza logica:
+    \begin{enumerate}
+        \item un \texttt{if} iniziale verifica l'età dell'utente (essere maggiorenni è obbligatorio per procedere);
+        \item un blocco \texttt{switch-case} fa scegliere il tipo di conto desiderato (B: Base, P: Premium, I: Business), associando un costo di attivazione iniziale;
+        \item un \texttt{if} a cascata finale verifica il saldo dell'utente per determinare se può coprire istantaneamente il costo di attivazione del conto scelto, stampando l'esito finale dell'operazione (``Operazione riuscita'' / ``Fondi insufficienti per l'attivazione'').
+    \end{enumerate}
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int eta;
+    char tipo;
+    double costo = -1, saldo;
+
+    cout << "Inserisci la tua eta" << endl;
+    cin >> eta;
+
+    if (eta >= 18)
+    {
+        cout << "Tipo di conto (B: Base, P: Premium, I: Business)" << endl;
+        cin >> tipo;
+
+        switch (tipo)
+        {
+            case 'B':
+            case 'b':
+                cout << "Conto Base" << endl;
+                costo = 10.0;
+                break;
+            case 'P':
+            case 'p':
+                cout << "Conto Premium" << endl;
+                costo = 50.0;
+                break;
+            case 'I':
+            case 'i':
+                cout << "Conto Business" << endl;
+                costo = 100.0;
+                break;
+            default:
+                cout << "Tipo di conto non valido" << endl;
+        }
+
+        cout << "Inserisci il tuo saldo" << endl;
+        cin >> saldo;
+
+        if (costo < 0)
+            cout << "Operazione annullata" << endl;
+        else if (saldo >= costo)
+            cout << "Operazione riuscita" << endl;
+        else
+            cout << "Fondi insufficienti per l'attivazione" << endl;
+    }
+    else
+    {
+        cout << "Accesso negato: occorre essere maggiorenni" << endl;
+    }
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
 \section{Cicli}
 
 \begin{esercizio}[1]
