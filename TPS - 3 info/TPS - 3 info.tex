@@ -423,9 +423,36 @@ Effettua le seguenti divisioni in binario:
 %	CHAPTER 8
 %----------------------------------------------------------------------------------------
 
-% \chapter{Rilevazione e correzione errori}
+\chapter{Rilevazione e correzione errori}
 
-% \section{Bit di parità}
+\section{Bit di parità}
+Il bit di parità è un bit aggiunto alla sequenza di dati affinché il numero complessivo di bit pari a 1 sia pari (parità pari) o dispari (parità dispari). 
+
+\noindent
+Consente di rilevare errori di singolo bit durante la trasmissione: se un bit viene alterato, la parità della parola ricevuta non corrisponde più a quella attesa e l'errore viene segnalato. 
+
+\noindent
+Non consente però di correggere l'errore né di rilevare errori su un numero pari di bit.
+
+\vspace{0.5cm}
+
+\noindent
+Effettua il calcolo del bit di parità per le seguenti parole binarie:
+
+\begin{esercizio}[1]
+    \textbf{Esercizio guidato}
+
+    Aggiungi il bit di parità \emph{pari} alla parola $1011001$.
+
+    \immediate\write18{python3 ./../scripts/ParityBit.py "1011001 pari" > temp/ex_parita.tex}
+    \input{./temp/ex_parita.tex}
+\end{esercizio}
+
+\newpage
+
+\eserciziopy{parity_bit}
+
+% \newpage
 
 % \section{CRC}
 
