@@ -452,9 +452,27 @@ Effettua il calcolo del bit di parità per le seguenti parole binarie:
 
 \eserciziopy{parity_bit}
 
-% \newpage
+\newpage
 
-% \section{CRC}
+\section{CRC}
+Effettua il calcolo del CRC per le seguenti parole binarie dato un generatore:
+
+
+\begin{esercizio}[1]
+    \textbf{Esercizio guidato}
+
+    Calcola il CRC del messaggio $1101001110$ usando il generatore $101$.
+
+    \immediate\write18{python3 ./../scripts/CRC.py "1101001110:101" > temp/ex_crc.tex}
+    \input{./temp/ex_crc.tex}
+
+\end{esercizio}
+
+\newpage
+
+\eserciziopy{crc}
+
+% \newpage
 
 % \section{LRC}
 
