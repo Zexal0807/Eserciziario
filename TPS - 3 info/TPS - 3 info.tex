@@ -472,9 +472,23 @@ Effettua il calcolo del CRC per le seguenti parole binarie dato un generatore:
 
 \eserciziopy{crc}
 
-% \newpage
+\newpage
 
-% \section{LRC}
+\section{LRC}
+Calcola il LRC delle seguenti parole:
+
+\begin{esercizio}[1]
+    \textbf{Esercizio guidato}
+
+    Calcola il LRC delle seguenti parole (7 bit ciascuna): $45, 67, 89$.
+
+    \immediate\write18{python3 ./../scripts/LRC.py "45,67,89" > temp/ex_lrc.tex}
+    \input{./temp/ex_lrc.tex}
+
+    La colonna 8 contiene i bit di parità di riga, la riga 4 contiene i bit di parità di colonna.
+\end{esercizio}
+
+\eserciziopy{lrc}
 
 %----------------------------------------------------------------------------------------
 %	PART 3
