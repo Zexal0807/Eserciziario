@@ -823,6 +823,8 @@ int main()
     \fi
 \end{esercizio}
 
+\newpage
+
 \section{Selezione e switch case}
 
 \begin{esercizio}[1]
@@ -1141,6 +1143,8 @@ int main()
     \fi
 \end{esercizio}
 
+\newpage
+
 \section{Cicli}
 
 \begin{esercizio}[1]
@@ -1285,11 +1289,11 @@ int main()
 
     \emph{Esempio con n = 3}
     
-    *
-
-    **
-    
-    ***
+    \begin{tabular}{ccc}
+        * &   &  \\
+        * & * &  \\
+        * & * &  *
+    \end{tabular}
     
     \ifsoluzioni
     \solution
@@ -1318,6 +1322,50 @@ int main()
 \end{esercizio}
 
 
+\begin{esercizio}[2]
+    Progettare e scrivere un programma che, dato in ingresso un numero intero n, visualizzi un quadrato di spazi di lato n, aventi l'ultima colonna, la seconda riga e la diagonale principale riempite di asterischi
+
+    \emph{Esempio con n = 5}
+
+    \begin{tabular}{ccccc}
+        * &   &   &   & * \\
+        * & * & * & * & * \\
+          &   & * &   & * \\
+          &   &   & * & * \\
+          &   &   &   & *
+    \end{tabular}
+    
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    int n;
+    int i, j;
+
+    cout << "Inserisci un numero intero n: ";
+    cin >> n;
+
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            if (j == n - 1 || i == 1 || i == j) {
+                cout << "*";
+            } else {
+                cout << " ";
+            }
+        }
+        cout << endl;
+    }
+    
+
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
 
 
 % \begin{esercizio}[1]
@@ -1328,15 +1376,45 @@ int main()
 %     \lipsum[1]
 % \end{esercizio}
 
-% %----------------------------------------------------------------------------------------
-% %	CHAPTER 3
-% %----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%	CHAPTER 3
+%----------------------------------------------------------------------------------------
 
-% % \chapterimage{chapter_head_1.pdf}
+% \chapterimage{chapter_head_1.pdf}
 
-% \chapter{Codifica parole}
+\chapter{Programmazione funzionale}
 
-% \section{ASCII}
+\section{Funzioni}
+
+\begin{esercizio}[2]
+    Scrivere una funzione che legge e restiuisce un numer o intero compreso tra due valori $a$, $b$ passati come parametri.
+
+    \ifsoluzioni
+    \solution
+    \begin{lstlisting}[style=cpp]
+#include <iostream>
+using namespace std;
+
+int leggiIntero(int a, int b) {
+    int n;
+    do {
+        cout << "Inserisci un numero intero tra " << a << " e " << b << ": ";
+        cin >> n;
+    } while (n < a || n > b);
+    return n;
+}
+
+int main() 
+{
+    int a = 1, b = 10;
+    int numero = leggiIntero(a, b);
+    cout << "Hai inserito: " << numero << endl;
+    return 0;
+}
+    \end{lstlisting}
+    \fi
+\end{esercizio}
+
 
 % %----------------------------------------------------------------------------------------
 % %	CHAPTER 4
